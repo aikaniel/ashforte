@@ -4,23 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <article class="card">
                 <header class="card-header"><h3>Forum Threads</h3></header>
-
-                <article class="card-body">
+                <section class="card-body">
                     @foreach ($threads as $thread)
-                        <section>
-                            <header>
-                                <h4>
-                                    <a href="/threads/{{ $thread->id }}">{{ $thread->title }}</a>                                
-                                </h4>
-                            </header>
-                            <body>
+                        <article>
+                            <h4>
+                                <a href="/threads/{{ $thread->id }}">{{ $thread->title }}</a>                                
+                            </h4>
+                            <p>
                                 {{ $thread->body }}
-                            </body>
-                        </section>
-                        <hr>
+                            </p>
+                            <hr>
+                        </article>
                     @endforeach
+                </section>
             </article>
         </div>
     </div>

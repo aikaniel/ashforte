@@ -4,13 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <article class="card">
                 <header class="card-header"><h3>{{$thread->title}}</h3></header>
 
-                <article class="card-body">
+                <section class="card-body">
                     {{$thread->body}}
-                </article>
-            </div>
+                </section>
+            </article>
         </div>
     </div>
 </div>

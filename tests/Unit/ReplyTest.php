@@ -3,11 +3,17 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
     use RefreshDatabase;
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->reply = factory('App\Reply')->create();
+    }
     /**
      * A basic unit test example.
      *
@@ -15,8 +21,7 @@ class ReplyTest extends TestCase
      */
     public function test_it_has_a_user()
     {
-        $reply = factory('App\Reply')->create();
 
-        $this->assertInstanceOf('App\User', $reply->user);
+        $this->assertInstanceOf('App\User', $this->reply->user);
     }
 }

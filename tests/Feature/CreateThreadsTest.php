@@ -17,21 +17,17 @@ class CreateThreadsTest extends TestCase
         
     }
 
+    /** @test */
     function test_guests_may_not_create_threads()
     {
-        $this->withoutExceptionHandling()
-            ->expectException('Illuminate\Auth\AuthenticationException');
-
-        $thread = make('App\Thread');
-
-        $this->post('/threads', $thread->toArray());
-    }
-
-    /** @test */
-    function test_guests_cannot_see_the_create_thread_page(){
         $this->get('/threads/create')
-            ->assertRedirect('/login');
+        ->assertRedirect('/login');
+
+        $this->post('/threads')
+        ->assertRedirect('/login');
+
     }
+
 
     /** @test */
     function test_an_authenticated_user_can_create_new_forum_threads()
@@ -39,7 +35,7 @@ class CreateThreadsTest extends TestCase
         // $this->actingAs(create('App\User'));
         $this->signIn();
 
-        $thread = make('App\Thread');
+        $thread = create('App\Thread');
 
         $this->post('/threads', $thread->toArray());
 

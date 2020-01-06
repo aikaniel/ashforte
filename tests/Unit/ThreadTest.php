@@ -18,31 +18,27 @@ class ThreadTest extends TestCase
         $this->thread = factory('App\Thread')->create();
     }
 
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_a_thread_has_replies()
+    /** @test */
+    public function test_a_thread_can_make_a_string_path()
     {
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
+        $thread = create('App\Thread');
+
+        $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
     }
 
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
+    /** @test */
     public function test_a_thread_has_a_creator()
     {
         $this->assertInstanceOf('App\User', $this->thread->user);
     }
 
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
+    /** @test */
+    public function test_a_thread_has_replies()
+    {
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
+    }
+
+    /** @test */
     public function test_a_thread_can_add_a_reply()
     {
         $this->thread->addReply([
@@ -51,5 +47,13 @@ class ThreadTest extends TestCase
         ]);
 
         $this->assertCount(1, $this->thread->replies);
+    }
+
+    /** @test */
+    function test_a_thread_belongs_to_a_channel()
+    {
+        $thread = create('App\Thread');
+
+        $this->assertInstanceOf('App\Channel', $thread->channel);
     }
 }

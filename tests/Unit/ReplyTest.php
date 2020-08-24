@@ -15,11 +15,9 @@ class ReplyTest extends TestCase
         $this->reply = factory('App\Reply')->create();
     }
     /**
-     * A basic unit test example.
-     *
-     * @return void
+     * @test
      */
-    public function test_it_has_a_user()
+    public function replies_have_a_user()
     {
 
         $this->assertInstanceOf('App\User', $this->reply->user);

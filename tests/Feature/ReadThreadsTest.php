@@ -18,35 +18,29 @@ class ReadThreadsTest extends TestCase
     }
 
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function test_a_user_can_view_all_threads()
+    public function a_user_can_view_all_threads()
     {
 
         $this->get('/threads')
-            ->assertSee($this->thread->title); 
+            ->assertSee($this->thread->title);
     }
 
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function test_a_user_can_read_a_single_thread()
+    public function a_user_can_read_a_single_thread()
     {
 
         $this->get('/threads/'. $this->thread->id)
-            ->assertSee($this->thread->title); 
+            ->assertSee($this->thread->title);
     }
 
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function test_a_user_read_replies_that_are_associated_with_a_thread()
+    public function a_user_read_replies_that_are_associated_with_a_thread()
     {
         $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
         $this->get('/threads/' . $this->thread->id)
